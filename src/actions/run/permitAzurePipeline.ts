@@ -15,7 +15,7 @@
  */
 
 import { InputError } from "@backstage/errors";
-import { ScmIntegrationRegistry } from "@backstage/integration";
+import { DefaultAzureDevOpsCredentialsProvider, ScmIntegrationRegistry } from "@backstage/integration";
 import { createTemplateAction } from "@backstage/plugin-scaffolder-node";
 
 import fetch from "node-fetch";
@@ -111,19 +111,27 @@ export const permitAzurePipelineAction = (options: {
 
       const host = server ?? "dev.azure.com";
       const apiVersion = permitsApiVersion ?? "7.1-preview.1";
-      const integrationConfig = integrations.azure.byHost(host);
+      const type = integrations.byHost(host)?.type;
 
-      if (!integrationConfig) {
+      if (!type) {
         throw new InputError(
-          `No matching integration configuration for host ${host}, please check your integrations config`
+          `No matching integration configuration for host ${host}, please check your integrations config`,
         );
       }
 
-      if (!integrationConfig.config.token && !ctx.input.token) {
-        throw new InputError(`No token provided for Azure Integration ${host}`);
+      const url = `https://${host}/${organization}`;
+
+      const credentialProvider =
+        DefaultAzureDevOpsCredentialsProvider.fromIntegrations(integrations);
+      const credentials = await credentialProvider.getCredentials({ url: url });
+
+      if (credentials === undefined && ctx.input.token === undefined) {
+        throw new InputError(
+          `No credentials provided ${url}, please check your integrations config`,
+        );
       }
 
-      const token = ctx.input.token ?? integrationConfig.config.token!;
+      const token = ctx.input.token ?? credentials!.token;
 
       if (ctx.input.authorized === true) {
         ctx.logger.info(
