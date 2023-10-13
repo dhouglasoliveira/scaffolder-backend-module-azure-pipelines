@@ -31,7 +31,7 @@ You need to configure the actions in your backend:
 
 ```sh
 # From your Backstage root directory
-yarn add --cwd packages/backend @parfuemerie-douglas/scaffolder-backend-module-azure-pipelines
+yarn add --cwd packages/backend @antoniobergas/scaffolder-backend-module-azure-pipelines
 ```
 
 Configure the actions (you can check the
@@ -85,7 +85,8 @@ permission for `Service Connections`. Simply add the PAT to your
 integrations:
   azure:
     - host: dev.azure.com
-      token: ${AZURE_TOKEN}
+      credentials:
+        - personalAccessToken: ${AZURE_TOKEN}
 ```
 
 Read more on integrations in Backstage in the [Integrations
