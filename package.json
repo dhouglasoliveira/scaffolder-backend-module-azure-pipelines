@@ -1,7 +1,7 @@
 {
-  "name": "@parfuemerie-douglas/scaffolder-backend-module-azure-pipelines",
-  "version": "1.1.0",
-  "description": "A collection of Backstage scaffolder backend modules for Azure pipelines.",
+  "name": "@dhouglasoliveira/scaffolder-backend-module-azure-pipelines",
+  "version": "1.1.1",
+  "description": "A collection of Backstage scaffolder backend modules for Azure pipelines, forked from https://github.com/Parfuemerie-Douglas/scaffolder-backend-module-azure-pipelines.",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "publishConfig": {
@@ -19,11 +19,12 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "update": "backstage-cli versions:bump"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Parfuemerie-Douglas/scaffolder-backend-module-azure-pipelines.git"
+    "url": "git+https://github.com/DhouglasOliveira/scaffolder-backend-module-azure-pipelines.git"
   },
   "keywords": [
     "backstage",
@@ -35,20 +36,20 @@
   "author": "Parfümerie Douglas GmbH",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Parfuemerie-Douglas/scaffolder-backend-module-azure-pipelines/issues"
+    "url": "https://github.com/DhouglasOliveira/scaffolder-backend-module-azure-pipelines/issues"
   },
-  "homepage": "https://github.com/Parfuemerie-Douglas/scaffolder-backend-module-azure-pipelines#readme",
+  "homepage": "https://github.com/DhouglasOliveira/scaffolder-backend-module-azure-pipelines#readme",
   "dependencies": {
-    "@backstage/backend-common": "^0.20.0",
-    "@backstage/errors": "^1.2.3",
-    "@backstage/integration": "^1.8.0",
-    "@backstage/plugin-scaffolder-backend": "^1.19.2",
-    "@backstage/plugin-scaffolder-node": "^0.2.9",
+    "@backstage/backend-common": "^0.23.2",
+    "@backstage/errors": "^1.2.4",
+    "@backstage/integration": "^1.12.0",
+    "@backstage/plugin-scaffolder-backend": "^1.22.11",
+    "@backstage/plugin-scaffolder-node": "^0.4.7",
     "@backstage/types": "^1.1.1",
     "node-fetch": "^2.6.2"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.25.1",
+    "@backstage/cli": "^0.26.10",
     "@types/node-fetch": "^2.6.2"
   },
   "dependenciesMeta": {
